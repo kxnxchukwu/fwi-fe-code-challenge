@@ -1,0 +1,79 @@
+@import 'variables';
+
+$header-height: 2.5rem;
+
+.player-table {
+  margin-top: 3.5rem;
+  padding-top: calc(#{$header-height} + 1px); // 1px for border of header
+}
+
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+
+  &--fixed {
+    background-color: $pearl;
+    border-bottom: 1px solid $fog;
+    top: 3.5rem;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+  }
+
+  &--body {
+    background-color: $snow;
+  }
+
+  &__row {
+    background-color: $snow;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: $pearl;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $pearl;
+    }
+  }
+
+  &__header {
+    height: $header-height;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    letter-spacing: 0.00937em;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  &__avatar {
+    text-align: center;
+    width: 4rem;
+  }
+
+  &__player {
+    width: 100%;
+  }
+
+  &__winnings {
+    text-align: right;
+    padding-right: 1.5rem;
+    width: 8rem;
+  }
+
+  &__native {
+    width: 6rem;
+  }
+}
+
+.country {
+  align-items: center;
+  display: flex;
+  height: 100%;
+
+  .avatar {
+    margin-right: 0.5rem;
+  }
+}

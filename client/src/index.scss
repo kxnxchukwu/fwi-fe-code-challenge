@@ -1,0 +1,19 @@
+@import 'variables';
+
+html {
+  background-color: #fafafa;
+  color: rgba($sleeping-panther, 0.87);
+  font-family: Montserrat, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

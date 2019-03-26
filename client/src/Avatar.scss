@@ -1,0 +1,17 @@
+@import 'variables';
+
+$avatar-size: 2.5rem;
+
+.avatar {
+  border: 1px solid $fog;
+  border-radius: 50%;
+  height: $avatar-size;
+  display: inline-flex;
+  overflow: hidden;
+  width: $avatar-size;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+}

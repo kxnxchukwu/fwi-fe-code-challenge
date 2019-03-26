@@ -1,0 +1,41 @@
+@import 'variables';
+
+.header {
+  align-items: center;
+  background-color: $charcoal;
+  box-shadow: 0 4px 5px 0 rgba($sleeping-panther, 0.14),
+    0 1px 10px 0 rgba($sleeping-panther, 0.12),
+    0 2px 4px -1px rgba($sleeping-panther, 0.4);
+  display: flex;
+  height: 3.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  &__title {
+    color: $snow;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.0125em;
+    line-height: 2rem;
+    margin: 0 1rem;
+  }
+}
+
+.logo {
+  height: 3.125rem;
+  margin-left: 1rem;
+  position: relative;
+  width: 3.125rem;
+
+  &__color {
+    fill: $vivid;
+  }
+
+  &__color,
+  &__effects {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}
