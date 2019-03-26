@@ -42,8 +42,8 @@ checklist below for the main features that we are looking for, and you can mark
 a task as completed by replacing the space with an `x`:
 
 ```dif
--- [ ] Create Player
-+- [x] Create Player
+- [ ] Create Player
++ [x] Create Player
 ```
 
 ### Challenge Checklist
