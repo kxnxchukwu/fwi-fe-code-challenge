@@ -7,11 +7,17 @@ const TableHeader = () => (
     className="table table--fixed"
   >
     <thead>
-      <tr>
-        <th className="table__header table__avatar" />
-        <th className="table__header table__player">Player</th>
-        <th className="table__header table__winnings">Winnings</th>
-        <th className="table__header table__native">Native of</th>
+      <tr role="row">
+        <th role="columnheader" className="table__header table__avatar" />
+        <th role="columnheader" className="table__header table__player">
+          Player
+        </th>
+        <th role="columnheader" className="table__header table__winnings">
+          Winnings
+        </th>
+        <th role="columnheader" className="table__header table__native">
+          Native of
+        </th>
       </tr>
     </thead>
   </table>

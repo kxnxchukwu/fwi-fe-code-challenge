@@ -9,7 +9,12 @@ import TableBody from "./TableBody";
 
 const PlayerTable = ({ players }) => {
   return (
-    <div id="player-table-grid" role="grid" className="player-table">
+    <div
+      id="player-table-grid"
+      role="grid"
+      aria-label="Poker Players"
+      className="player-table"
+    >
       <TableHeader />
       <TableBody players={players} />
     </div>

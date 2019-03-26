@@ -14,18 +14,20 @@ const TableBody = ({ players }) => {
     >
       <tbody>
         {players.map(({ id, name, country, winnings, imageUrl }) => (
-          <tr key={id} className="table__row">
-            <td className="table__avatar">
+          <tr key={id} role="row" className="table__row">
+            <td role="gridcell" className="table__avatar">
               <Avatar src={imageUrl} />
             </td>
-            <td className="table__player">{name}</td>
-            <td className="table__winnings">
+            <td role="gridcell" className="table__player">
+              {name}
+            </td>
+            <td role="gridcell" className="table__winnings">
               {winnings.toLocaleString(undefined, {
                 style: "currency",
                 currency: "USD",
               })}
             </td>
-            <td className="table__native">
+            <td role="gridcell" className="table__native">
               <div className="country">
                 <Avatar>
                   <Flags code={country} alt="" />
