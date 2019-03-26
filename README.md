@@ -41,7 +41,7 @@ your app and everything works as expected. We have also provided a very simple
 checklist below for the main features that we are looking for, and you can mark
 a task as completed by replacing the space with an `x`:
 
-```dif
+```diff
 - [ ] Create Player
 + [x] Create Player
 ```
