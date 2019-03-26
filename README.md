@@ -30,7 +30,7 @@ players can be added, modified, or deleted using the RESTful API backend we have
 provided. The app started with very simplistic styles, so feel free to import
 and use any of your favorite libraries or expand upon the current styles to your
 liking. If possible, ensure that the FWI branding colors are still used which
-can be found in [src/\_variables.scss](src/_variables).
+can be found in [client/src/\_variables.scss](client/src/_variables.scss).
 
 ### Cloning and developing
 
