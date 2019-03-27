@@ -7,6 +7,7 @@ This is the code challenge for applying to FWI's FE Developer Position.
 - [Getting Started and Challenge Information](#getting-started-and-challenge-information)
   - [Cloning and developing](#cloning-and-developing)
   - [Submitting the code](#submitting-the-code)
+  - [Challenge Checklist](#challenge-checklist)
 - [API Documentation](#api-documentation)
 - [Client Application](#client)
 - [Server Application](#server)
@@ -34,6 +35,27 @@ can be found in [client/src/\_variables.scss](client/src/_variables.scss).
 
 ### Cloning and developing
 
+It is recommended to **not** fork this project since it is a bit too easy for
+applicants to view pre-existing solutions by checking out this project's forks.
+Instead, you should create a new empty repo and pull in the changes from this
+repo:
+
+```
+username @ ~/
+$ mkdir fwi-fe-code-challenge
+$ cd fwi-fe-code-challenge
+$ git init
+$ git remote add origin https://github.com/USERNAME/fwi-fe-code-challenge
+$ git remote add remote-origin https://github.com/fourwindsinteractive/fwi-fe-code-challenge
+$ git pull remote-origin master
+$ git push origin master
+```
+
+The steps above will create an empty git repo, set the origin to your GitHub
+code challenge location, then pull the latest code challenge into your repo, and
+push it to your GitHub. Once you have done all of this, you should be set to
+start the code challenge.
+
 ### Submitting the code
 
 Before submitting your code, make sure that there are no console errors within
@@ -45,6 +67,13 @@ a task as completed by replacing the space with an `x`:
 - [ ] Create Player
 + [x] Create Player
 ```
+
+When you are ready, please send an email to [Megan Jo Specht] with a link to
+your GitHub repo and any additional instructions for running the project if you
+added any additional steps.
+
+> I recommended clicking the link above for [Megan Jo Specht] as it will also
+> create a basic email template for you
 
 ### Challenge Checklist
 
@@ -83,7 +112,7 @@ $ curl -H "Accept: application/json" \
     http://localhost:3001/players
 ```
 
-Result:
+Response:
 
 ```json
 {
@@ -260,3 +289,6 @@ $ yarn start
 The app will be started and available at http://localhost:3000
 
 ## server
+
+[megan jo specht]:
+  mailto:megan.specht@fourwindsinteractive.com?subject=FWI%20FE%20Code%20Challenge&body=Hey%20MJ%2C%0A%0AI%20have%20completed%20the%20code%20challenge%20and%20here%20is%20a%20link%20to%20my%20github%3A%0A%0Ahttps%3A%2F%2Fgithub.com%2FUSERNAME%2Ffwi-fe-code-challenge%0A%0AAdditional%20installation%20and%20running%20instructions%20are....%0A
