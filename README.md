@@ -51,10 +51,203 @@ a task as completed by replacing the space with an `x`:
 - [ ] Create Player
 - [ ] Modify Player
 - [ ] Delete Player
-- [ ] Tests (optional)
+- [ ] Implement sorting (optional)
 - [ ] Lazy loading/pagination (optional)
+- [ ] Tests (optional)
 
 ## API Documentation
+
+The player entity will have the following structure:
+
+```ts
+import { COUNTRIES } from "./constants";
+
+type Guid = string;
+type CountryCode = keyof COUNTRIES;
+
+interface Player {
+  id: Guid;
+  name: string;
+  country: CountryCode;
+  winnings: number;
+  imageUrl: string;
+}
+```
+
+### Get all players
+
+You can get a list of all the players be sending a `GET` request to `/players`:
+
+```sh
+$ curl -H "Accept: application/json" \
+    http://localhost:3001/players
+```
+
+Result:
+
+```json
+{
+  "players": [
+    {
+      "id": "314c5ab7-ba9b-4821-adba-b4f9d92009db",
+      "name": "Freddy Kruger",
+      "country": "US",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=314c5ab7-ba9b-4821-adba-b4f9d92009db"
+    },
+    {
+      "id": "70629df2-571a-4899-b36a-8f36c909508a",
+      "name": "Bob Bobbity",
+      "country": "US",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
+    }
+    // ... other players
+  ]
+}
+```
+
+This endpoint will also support pagination using the `start` and `size` query
+parameters:
+
+```sh
+$ curl -H "Accept: application/json" \
+    http://localhost:3001/players?size=24
+```
+
+Response:
+
+```json
+{
+  "from": 0,
+  "size": 24,
+  "total": 1000,
+  "players": [
+    {
+      "id": "314c5ab7-ba9b-4821-adba-b4f9d92009db",
+      "name": "Freddy Kruger",
+      "country": "US",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=314c5ab7-ba9b-4821-adba-b4f9d92009db"
+    },
+    {
+      "id": "70629df2-571a-4899-b36a-8f36c909508a",
+      "name": "Bob Bobbity",
+      "country": "US",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
+    }
+    // ... other players
+  ]
+}
+```
+
+So if you would like to get the next set of results, you can do:
+
+```sh
+$ curl -H "Accept: application/json" \
+    http://localhost:3001/players?size=24&from=24
+```
+
+Response:
+
+```json
+{
+  "from": 24,
+  "size": 24,
+  "total": 1000,
+  "players": [
+    {
+      "id": "0ef94f22-e727-4888-91e3-088be5dbd896",
+      "name": "Scott Sterling",
+      "country": "UK",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=0ef94f22-e727-4888-91e3-088be5dbd896"
+    },
+    {
+      "id": "4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f",
+      "name": "Stirling Archer",
+      "country": "US",
+      "winnings": 9302400,
+      "imageUrl": "https://i.pravatar.cc/40?u=4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f"
+    }
+    // ... other players
+  ]
+}
+```
+
+### Get a player
+
+You can get a single player by sending a `GET` request to `/players/:guid`:
+
+```sh
+$ curl -H "Accept: application/json" \
+    http://localhost:3001/players/70629df2-571a-4899-b36a-8f36c909508a
+```
+
+Response:
+
+```json
+{
+  "id": "70629df2-571a-4899-b36a-8f36c909508a",
+  "name": "Bob Bobbity",
+  "country": "US",
+  "winnings": 93024,
+  "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
+}
+```
+
+### Create a player
+
+To create a player, you can send a `POST` to `/players` with the following data:
+
+```ts
+interface Player {
+  name: string;
+  country: string;
+  winnings: number;
+  imageUrl?: string;
+}
+```
+
+The `imageUrl` will be optional as the BE will automatically create a `pravatar`
+url for you if omitted. After you create a player and it was successful, you
+should get a `201` response as well as a `Location` header pointing to the newly
+created player:
+
+```sh
+$ curl -d '{ "name": "New Person", country: "US", "winnings": 1000 }' \
+  -H "Content-Type: application/json" \
+  -IX POST http://localhost:3001/players
+```
+
+Response:
+
+```sh
+201 Created
+Location: http://localhost:3001/players/0ef94f22-e727-4888-91e3-088be5dbd896
+```
+
+### Update a player
+
+To update a player, you can send a `PATCH` to `/players/:guid` with the updated
+data:
+
+```sh
+$ curl -d '{ name: "Example Name" }' \
+    -H "Content-Type: application/json" \
+    -X PATCH \
+    http://localhost:3001/players/314c5ab7-ba9b-4821-adba-b4f9d92009db
+```
+
+### Delete a player
+
+Finally, to delete a player, you can send a `DELETE` to `/players/:guid`:
+
+```sh
+$ curl -X DELETE \
+    http://localhost:3001/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f
+```
 
 ## client
 
