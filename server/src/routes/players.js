@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const PlayersController = require('../controllers/PlayersController');
+const { ROUTE_PLAYERS } = require('../constants');
 
 const controller = new PlayersController();
 
 router.post('/', (req, res) => {
     const player = controller.create(req.body);
-    res.status(201).json(player);
+    res.status(201).location(`${ROUTE_PLAYERS}/${player.id}`).json(player);
 });
 
 router.get('/', (req, res) => {

@@ -57,6 +57,9 @@ class PlayersController {
     create(record, validate = true) {
         const data = this.readData();
         const player = Object.assign({}, record, { id: uuid() });
+        if (!record.imageUrl) {
+            player.imageUrl = `http://i.pravatar.cc/40?u=${player.id}`;
+        }
         if (validate) {
             this.validate(player);
         }
