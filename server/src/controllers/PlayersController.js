@@ -1,7 +1,7 @@
 const fs = require('fs');
 const uuid = require('uuid/v4');
 const Joi = require('joi');
-const { COUNTRIES, DATA_FILE } = require('../constants');
+const { COUNTRIES, DATA_FILE, PLAYER_LIST_DEFAULTS, SORT_ORDER_DESC } = require('../constants');
 const { NotFoundError, BadRequestError } = require('../errors');
 
 class PlayersController {
@@ -34,14 +34,44 @@ class PlayersController {
         }
     }
 
-    getAll(start = 0, size = 25) {
+    createSortingFunction(sortBy, sortOrder) {
+        if (sortBy === 'winnings') {
+            return (a, b) => {
+                if (sortOrder === SORT_ORDER_DESC) {
+                    return b[sortBy] - a[sortBy];
+                } else {
+                    return a[sortBy] - b[sortBy];
+                }
+            };
+        } else {
+            return (a, b) => {
+                const vA = a[sortBy].toUpperCase();
+                const vB = b[sortBy].toUpperCase();
+                if (sortOrder === SORT_ORDER_DESC) {
+                    if (vA > vB) return -1;
+                    else if (vA < vB) return 1;
+                    else return 0;
+                } else {
+                    if (vA < vB) return -1;
+                    else if (vA > vB) return 1;
+                    else return 0;
+                }
+            };
+        }
+    }
+
+    getAll(params = {}) {
+        const { sortBy, sortOrder, from, size } = Object.assign({}, PLAYER_LIST_DEFAULTS, params);
         const data = this.readData();
-        const ids = Object.keys(data);
-        const result = ids.slice(start, start + size).map(id => data[id]);
+        const dataArr = Object.values(data);
+        if (sortBy && sortOrder) {
+            dataArr.sort(this.createSortingFunction(sortBy, sortOrder));
+        }
+        const result = dataArr.slice(from, from + size);
         return {
-            total: ids.length,
+            total: dataArr.length,
             size: result.length,
-            from: start,
+            from,
             players: result
         };
     }

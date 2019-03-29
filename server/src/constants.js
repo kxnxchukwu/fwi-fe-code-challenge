@@ -9,11 +9,23 @@ const INITIAL_DATA_FILE = path.join(__dirname, '..', 'initialData.json');
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const DATA_FILE = path.join(DATA_DIR, 'index.json');
 
+const PLAYER_LIST_DEFAULTS = {
+    from: 0,
+    size: 25
+};
+const PLAYER_SORTABLE_FIELDS = ['name', 'country', 'winnings'];
+const SORT_ORDER_ASC = 'asc';
+const SORT_ORDER_DESC = 'desc';
+
 module.exports = {
     PORT,
     ROUTE_PLAYERS,
     COUNTRIES,
     INITIAL_DATA_FILE,
     DATA_DIR,
-    DATA_FILE
+    DATA_FILE,
+    PLAYER_LIST_DEFAULTS,
+    PLAYER_SORTABLE_FIELDS,
+    SORT_ORDER_ASC,
+    SORT_ORDER_DESC
 };
