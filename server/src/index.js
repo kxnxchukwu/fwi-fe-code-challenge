@@ -30,7 +30,7 @@ if (!fs.existsSync(DATA_DIR)) {
 }
 if (!fs.existsSync(DATA_FILE)) {
     fs.copyFileSync(INITIAL_DATA_FILE, DATA_FILE);
-    fs.chmodSync(DATA_FILE, 0777);
+    fs.chmodSync(DATA_FILE, "0777");
 }
 
 app.listen(PORT, () => {

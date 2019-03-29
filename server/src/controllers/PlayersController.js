@@ -62,6 +62,7 @@ class PlayersController {
         }
         data[player.id] = player;
         this.writeData(data);
+        return player;
     }
 
     update(id, record, validate = true) {
@@ -75,10 +76,11 @@ class PlayersController {
         }
         data[id] = player;
         this.writeData(data);
+        return player;
     }
 
     delete(id) {
-        const data = this.readFile();
+        const data = this.readData();
         if (!data[id]) {
             throw new NotFoundError();
         }

@@ -32,9 +32,9 @@ class NotFoundError extends CustomError {
     }
 }
 
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-vars
     res.status((err instanceof CustomError && err.status) ? err.status : 500);
-    res.json({ message: err.message || 'Internal Server Error' });
+    res.send(err.message || 'Internal Server Error');
 }
 
 module.exports = {
