@@ -1,28 +1,36 @@
 console.log('Starting server...');
 
-const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const playersRoute = require('./routes/players');
-const { PORT, ROUTE_PLAYERS } = require('./constants');
+const {
+    PORT,
+    ROUTE_PLAYERS,
+    DATA_DIR,
+    DATA_FILE,
+    INITIAL_DATA_FILE
+} = require('./constants');
+const { errorHandler } = require('./errors');
 
 const app = express();
+
+// Middlewares
 app.use(bodyParser.json());
 
 // Routes
 app.use(ROUTE_PLAYERS, playersRoute);
 
+// Catch all error handler
+app.use(errorHandler);
+
 // Creating initial data set if it doesn't exist
-const initialDataFile = path.join(__dirname, '..', 'initialData.json');
-const dataDir = path.join(__dirname, '..', 'data');
-const dataFile = path.join(dataDir, 'index.json');
-if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir);
+if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR);
 }
-if (!fs.existsSync(dataFile)) {
-    fs.copyFileSync(initialDataFile, dataFile);
-    fs.chmodSync(dataFile, 777);
+if (!fs.existsSync(DATA_FILE)) {
+    fs.copyFileSync(INITIAL_DATA_FILE, DATA_FILE);
+    fs.chmodSync(DATA_FILE, 0777);
 }
 
 app.listen(PORT, () => {

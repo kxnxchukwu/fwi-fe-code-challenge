@@ -2,13 +2,18 @@
   "name": "server",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=8.10.0"
+  },
   "scripts": {
     "start": "node src/index.js",
     "lint": "eslint src"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^5.15.3"

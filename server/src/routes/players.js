@@ -1,49 +1,33 @@
 const router = require('express').Router();
+const PlayersController = require('../controllers/PlayersController');
+
+const controller = new PlayersController();
 
 router.post('/', (req, res) => {
-    res
-        .status(201)
-        .location('http://localhost:3001/players/b205f6ba-f572-4771-9d2c-3dbb16a74d16')
-        .json({
-            "id": "70629df2-571a-4899-b36a-8f36c909508a",
-            "name": "Bob Bobbity",
-            "country": "US",
-            "winnings": 0,
-            "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
-        });
+    const player = controller.create(req.body);
+    res.status(201).json(player);
 });
 
 router.get('/', (req, res) => {
-    res.status(200).json({
-        from: 0,
-        size: 0,
-        total: 0,
-        players: []
-    });
+    const size = req.query.size ? parseInt(req.query.size, 10) : undefined;
+    const start = req.query.start ? parseInt(req.query.start, 10) : undefined;
+    const players = controller.getAll(start, size);
+    res.status(200).json(players);
 });
 
 router.get('/:id', (req, res) => {
-    res.status(200).json({
-        "id": "70629df2-571a-4899-b36a-8f36c909508a",
-        "name": "Bob Bobbity",
-        "country": "US",
-        "winnings": 93024,
-        "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
-    });
+    const player = controller.getById(req.params.id);
+    res.status(200).json(player);
 });
 
 router.patch('/:id', (req, res) => {
-    res.status(200).json({
-        "id": "70629df2-571a-4899-b36a-8f36c909508a",
-        "name": "Bob Hoppity",
-        "country": "US",
-        "winnings": 23456,
-        "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
-    });
+    const player = controller.update(req.params.id, req.body);
+    res.status(200).json(player);
 });
 
 router.delete('/:id', (req, res) => {
-    res.status(200).json({ message: 'Player has been deleted' });
+    controller.delete(req.params.id);
+    res.status(204).send();
 });
 
 module.exports = router;
