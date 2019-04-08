@@ -6,8 +6,11 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
-    "react-world-flags": "^1.3.0"
+    "react-world-flags": "^1.3.0",
+    "redux": "^4.0.1",
+    "shallowequal": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^1.16.4"
+  }
 }
