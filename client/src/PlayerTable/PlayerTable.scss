@@ -15,9 +15,9 @@ $header-height: 2.5rem;
   &--fixed {
     background-color: $pearl;
     border-bottom: 1px solid $fog;
-    top: 3.5rem;
     left: 0;
     position: fixed;
+    top: 3.5rem;
     z-index: 1;
   }
 
@@ -39,11 +39,11 @@ $header-height: 2.5rem;
   }
 
   &__header {
-    height: $header-height;
+    letter-spacing: 0.00937em;
+    line-height: 1.75rem;
     font-size: 1rem;
     font-weight: 600;
-    line-height: 1.75rem;
-    letter-spacing: 0.00937em;
+    height: $header-height;
     text-align: left;
     vertical-align: middle;
   }
@@ -58,8 +58,8 @@ $header-height: 2.5rem;
   }
 
   &__winnings {
-    text-align: right;
     padding-right: 1.5rem;
+    text-align: right;
     width: 8rem;
   }
 

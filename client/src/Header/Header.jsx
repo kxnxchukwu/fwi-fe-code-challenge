@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import "./Header.scss";
-import { ReactComponent as CloudColor } from "./cloud-color.svg";
-import { ReactComponent as CloudEffects } from "./cloud-effects.svg";
+import './Header.scss';
+import { ReactComponent as CloudColor } from './cloud-color.svg';
+import { ReactComponent as CloudEffects } from './cloud-effects.svg';
 
 const Header = () => (
   <header id="main-header" className="header">

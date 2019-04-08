@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import Header from "./Header/Header";
-import PlayerTable from "./PlayerTable/PlayerTable";
-import { COUNTRIES } from "./constants";
+import Header from './Header/Header';
+import PlayerTable from './PlayerTable/PlayerTable';
+import { COUNTRIES } from './constants';
 
 const codes = Object.keys(COUNTRIES);
 

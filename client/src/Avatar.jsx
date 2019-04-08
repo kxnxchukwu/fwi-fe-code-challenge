@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./Avatar.scss";
+import './Avatar.scss';
 
 const Avatar = ({ src, children }) => (
   <span className="avatar">{children || <img src={src} alt="" />}</span>

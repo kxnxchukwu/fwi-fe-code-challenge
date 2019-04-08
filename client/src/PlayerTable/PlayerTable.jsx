@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { COUNTRIES } from "../constants";
+import { COUNTRIES } from '../constants';
 
-import "./PlayerTable.scss";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import './PlayerTable.scss';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 const PlayerTable = ({ players }) => {
   return (

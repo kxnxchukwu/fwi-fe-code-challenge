@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Flags from "react-world-flags";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Flags from 'react-world-flags';
 
-import Avatar from "../Avatar";
-import { COUNTRIES } from "../constants";
+import Avatar from '../Avatar';
+import { COUNTRIES } from '../constants';
 
 const TableBody = ({ players }) => {
   return (
@@ -23,8 +23,8 @@ const TableBody = ({ players }) => {
             </td>
             <td role="gridcell" className="table__winnings">
               {winnings.toLocaleString(undefined, {
-                style: "currency",
-                currency: "USD",
+                style: 'currency',
+                currency: 'USD',
               })}
             </td>
             <td role="gridcell" className="table__native">
