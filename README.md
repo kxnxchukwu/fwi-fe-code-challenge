@@ -6,9 +6,11 @@ This is the code challenge for applying to FWI's FE Developer Position.
 
 - [Getting Started and Challenge Information](#getting-started-and-challenge-information)
   - [Cloning and developing](#cloning-and-developing)
+  - [Quick Setup](#quick-setup)
   - [Submitting the code](#submitting-the-code)
   - [Challenge Checklist](#challenge-checklist)
 - [API Documentation](#api-documentation)
+- [Running both servers simultaneously](#running-both-servers-simultaneously)
 - [Client Application](#client)
 - [Server Application](#server)
 
@@ -56,6 +58,25 @@ code challenge location, then pull the latest code challenge into your repo, and
 push it to your GitHub. Once you have done all of this, you should be set to
 start the code challenge.
 
+### Quick Setup
+
+After you have cloned the repo, you will need to ensure that [yarn] has been
+installed since this project uses yarn for dependency management and the
+workspaces feature. Once `yarn` has been installed, you can get up and running
+with:
+
+```sh
+$ yarn
+$ yarn start
+```
+
+The above commands will install all the dependencies in both the `client` and
+`server` folders as well as start up both the client server and the API server
+for you.
+
+The `client` app will be using [create-react-app], so anything that is supported
+by create-react-app can be used.
+
 ### Submitting the code
 
 Before submitting your code, make sure that there are no console errors within
@@ -89,7 +110,7 @@ added any additional steps.
 The player entity will have the following structure:
 
 ```ts
-import { COUNTRIES } from "./constants";
+import { COUNTRIES } from './constants';
 
 type Guid = string;
 type CountryCode = keyof COUNTRIES;
@@ -278,6 +299,19 @@ $ curl -X DELETE \
     http://localhost:3001/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f
 ```
 
+## Running both servers simultaneously
+
+If you'd like to run the `client` and `server` apps in one command, you can
+change into the root directory and just run:
+
+```sh
+$ yarn
+$ yarn start
+```
+
+This will install dependencies in both folders as well as spin up both servers
+using `npm-run-all`
+
 ## client
 
 ```sh
@@ -290,5 +324,15 @@ The app will be started and available at http://localhost:3000
 
 ## server
 
+```sh
+$ cd server
+$ yarn
+$ yarn start
+```
+
+The API server will be started and available at http://localhost:3001
+
+[yarn]: https://yarnpkg.com
+[create-react-app]: https://github.com/facebook/create-react-app
 [megan jo specht]:
   mailto:megan.specht@fourwindsinteractive.com?subject=FWI%20FE%20Code%20Challenge&body=Hey%20MJ%2C%0A%0AI%20have%20completed%20the%20code%20challenge%20and%20here%20is%20a%20link%20to%20my%20github%3A%0A%0Ahttps%3A%2F%2Fgithub.com%2FUSERNAME%2Ffwi-fe-code-challenge%0A%0AAdditional%20installation%20and%20running%20instructions%20are....%0A
