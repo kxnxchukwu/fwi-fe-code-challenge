@@ -7,6 +7,7 @@ This is the code challenge for applying to FWI's FE Developer Position.
 - [Getting Started and Challenge Information](#getting-started-and-challenge-information)
   - [Cloning and developing](#cloning-and-developing)
   - [Quick Setup](#quick-setup)
+  - [Installing Dependencies](#installing-dependencies)
   - [Submitting the code](#submitting-the-code)
   - [Challenge Checklist](#challenge-checklist)
 - [API Documentation](#api-documentation)
@@ -74,6 +75,32 @@ for you.
 
 The `client` app will be using [create-react-app], so anything that is supported
 by create-react-app can be used.
+
+### Installing dependencies
+
+This project is using [yarn workspaces] to manage dependencies in both the
+`client` and `server` folders. This really just allows you to reference code in
+both folders (if needed) and make the `node_modules` folders smaller as all
+dependencies will be brought up to the root folder. With this change, you will
+only need to run `yarn` in the root folder instead of both in `client` and
+`server` to install dependencies.
+
+With this change, you will either want to use the new `yarn workspace` prefix
+when installing packages or change into the `client` folder before installing
+the package. Check out the example below for more information and an example of
+adding the [redux-devtools-extension] to the `client` app.
+
+```sh
+username @ ~/fwi-fe-code-challenge
+$ yarn workspace client add redux-devtools-extension
+```
+
+Or directly within the `client` folder:
+
+```sh
+username @ ~/fwi-fe-code-challenge/client
+$ yarn add redux-devtools-extension
+```
 
 ### Submitting the code
 
@@ -334,3 +361,6 @@ The API server will be started and available at http://localhost:3001
 [create-react-app]: https://github.com/facebook/create-react-app
 [megan jo specht]:
   mailto:megan.specht@fourwindsinteractive.com?subject=FWI%20FE%20Code%20Challenge&body=Hey%20MJ%2C%0A%0AI%20have%20completed%20the%20code%20challenge%20and%20here%20is%20a%20link%20to%20my%20github%3A%0A%0Ahttps%3A%2F%2Fgithub.com%2FUSERNAME%2Ffwi-fe-code-challenge%0A%0AAdditional%20installation%20and%20running%20instructions%20are....%0A
+[yarn workspaces]: https://yarnpkg.com/lang/en/docs/workspaces/
+[redux-devtools-extension]:
+  https://github.com/zalmoxisus/redux-devtools-extension
