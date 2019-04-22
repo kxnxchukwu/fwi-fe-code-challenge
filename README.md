@@ -79,16 +79,17 @@ by create-react-app can be used.
 ### Installing dependencies
 
 This project is using [yarn workspaces] to manage dependencies in both the
-`client` and `server` folders. This really just allows you to reference code in
-both folders (if needed) and make the `node_modules` folders smaller as all
-dependencies will be brought up to the root folder. With this change, you will
-only need to run `yarn` in the root folder instead of both in `client` and
-`server` to install dependencies.
+`client` and `server` folders so that the `node_modules` folder can be a bit
+smaller and a simple way to install dependencies in both directories. Instead of
+having to `cd` into both the `client` and `server` folders to install
+dependencies, you can now just run `yarn` in the root folder which will
+automatically install all required dependencies.
 
-With this change, you will either want to use the new `yarn workspace` prefix
-when installing packages or change into the `client` folder before installing
-the package. Check out the example below for more information and an example of
-adding the [redux-devtools-extension] to the `client` app.
+If you would like to install a new dependency for this code challenge, you can
+either `cd` into the `client` folder and run `yarn add PACKAGE_NAME` like normal
+or use the `yarn workspace` prefix. Check out the example below for more
+information and an example of adding the [redux-devtools-extension] to the
+`client` app.
 
 ```sh
 username @ ~/fwi-fe-code-challenge
@@ -101,6 +102,9 @@ Or directly within the `client` folder:
 username @ ~/fwi-fe-code-challenge/client
 $ yarn add redux-devtools-extension
 ```
+
+So packages should still be installed in the `client/package.json` instead of
+the root `package.json`.
 
 ### Submitting the code
 
