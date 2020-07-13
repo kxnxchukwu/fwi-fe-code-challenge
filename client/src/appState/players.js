@@ -2,7 +2,7 @@ import { FETCH_PLAYERS_SUCCESS } from './constants';
 
 function mergePlayers(state, { players }) {
   const newState = { ...state };
-  players.forEach(player => {
+  players.forEach((player) => {
     newState[player.id] = player;
   });
   return newState;

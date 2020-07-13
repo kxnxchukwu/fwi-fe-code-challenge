@@ -32,10 +32,10 @@ class PlayerTable extends PureComponent {
         Accept: 'application/json',
       },
     })
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         if (data) {
           fetchPlayersSuccess(data);
           return data;
@@ -60,12 +60,12 @@ class PlayerTable extends PureComponent {
   }
 }
 
-export default connectAdvanced(dispatch => {
+export default connectAdvanced((dispatch) => {
   let result;
   const actions = bindActionCreators({ fetchPlayersSuccess }, dispatch);
 
   return (state, props) => {
-    const players = state.playerIds.map(id => state.players[id]);
+    const players = state.playerIds.map((id) => state.players[id]);
 
     const nextResult = { ...props, ...actions, players };
 
