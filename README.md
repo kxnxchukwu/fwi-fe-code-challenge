@@ -292,9 +292,9 @@ should get a `201` response as well as a `Location` header pointing to the newly
 created player:
 
 ```sh
-$ curl -d '{ "name": "New Person", country: "US", "winnings": 1000 }' \
+$ curl -d '{ "name": "New Person", "country": "US", "winnings": 1000 }' \
   -H "Content-Type: application/json" \
-  -IX POST http://localhost:3001/players
+  -X POST http://localhost:3001/players
 ```
 
 Response:
@@ -310,7 +310,7 @@ To update a player, you can send a `PATCH` to `/players/:guid` with the updated
 data:
 
 ```sh
-$ curl -d '{ name: "Example Name" }' \
+$ curl -d '{ "name": "Example Name" }' \
     -H "Content-Type: application/json" \
     -X PATCH \
     http://localhost:3001/players/314c5ab7-ba9b-4821-adba-b4f9d92009db
