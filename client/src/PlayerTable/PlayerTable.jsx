@@ -12,7 +12,7 @@ const getPlayers = (state) => state.playerIds.map((id) => state.players[id]);
 const PlayerTable = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    (async function getPlayers() {
+    (async function fetchPlayers() {
       const response = await fetch('http://localhost:3001/players', {
         headers: {
           Accept: 'application/json',
