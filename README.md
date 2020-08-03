@@ -11,6 +11,13 @@ This is the code challenge for applying to FWI's FE Developer Position.
   - [Submitting the code](#submitting-the-code)
   - [Challenge Checklist](#challenge-checklist)
 - [API Documentation](#api-documentation)
+  - [Get All Players](#get-all-players)
+    - [Get All Players (Paginated)](#get-all-players-paginated)
+    - [Get All Players (Sorted)](#get-all-players-sorted)
+  - [Get a Player](#get-a-player)
+  - [Create a Player](#create-a-player)
+  - [Update a Player](#update-a-player)
+  - [Delete a Player](#delete-a-player)
 - [Running both servers simultaneously](#running-both-servers-simultaneously)
 - [Client Application](#client)
 - [Server Application](#server)
@@ -156,7 +163,7 @@ You can get a list of all the players be sending a `GET` request to `/players`:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    http://localhost:3001/players
+    "http://localhost:3001/players"
 ```
 
 Response:
@@ -183,12 +190,14 @@ Response:
 }
 ```
 
+#### Get All Players (Paginated)
+
 This endpoint will also support pagination using the `start` and `size` query
 parameters:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    http://localhost:3001/players?size=24
+    "http://localhost:3001/players?size=24"
 ```
 
 Response:
@@ -222,7 +231,7 @@ So if you would like to get the next set of results, you can do:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    http://localhost:3001/players?size=24&from=24
+    "http://localhost:3001/players?size=24&from=24"
 ```
 
 Response:
@@ -252,13 +261,54 @@ Response:
 }
 ```
 
+#### Get All Players (Sorted)
+
+This endpoint will also support sorting using the `sortBy` and `sortOrder` query
+parameters:
+
+```sh
+$ curl -H "Accept: application/json" \
+    "http://localhost:3001/players?sortBy=name&sortOrder=desc"
+```
+
+Response:
+
+```json
+{
+  "from": 0,
+  "size": 24,
+  "total": 1000,
+  "players": [
+    {
+      "id": "314c5ab7-ba9b-4821-adba-b4f9d92009db",
+      "name": "Freddy Kruger",
+      "country": "US",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=314c5ab7-ba9b-4821-adba-b4f9d92009db"
+    },
+    {
+      "id": "70629df2-571a-4899-b36a-8f36c909508a",
+      "name": "Bob Bobbity",
+      "country": "US",
+      "winnings": 93024,
+      "imageUrl": "https://i.pravatar.cc/40?u=70629df2-571a-4899-b36a-8f36c909508a"
+    }
+    // ... other players
+  ]
+}
+```
+
+Check out the
+[createSortingFunction](./server/src/controllers/PlayersController.js#L42) to
+see how the data is sorted and valid `sortBy`/`sortOrder` values.
+
 ### Get a player
 
 You can get a single player by sending a `GET` request to `/players/:guid`:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    http://localhost:3001/players/70629df2-571a-4899-b36a-8f36c909508a
+    "http://localhost:3001/players/70629df2-571a-4899-b36a-8f36c909508a"
 ```
 
 Response:
@@ -294,7 +344,7 @@ created player:
 ```sh
 $ curl -d '{ "name": "New Person", "country": "US", "winnings": 1000 }' \
   -H "Content-Type: application/json" \
-  -X POST http://localhost:3001/players
+  -X POST "http://localhost:3001/players"
 ```
 
 Response:
@@ -313,7 +363,7 @@ data:
 $ curl -d '{ "name": "Example Name" }' \
     -H "Content-Type: application/json" \
     -X PATCH \
-    http://localhost:3001/players/314c5ab7-ba9b-4821-adba-b4f9d92009db
+    "http://localhost:3001/players/314c5ab7-ba9b-4821-adba-b4f9d92009db"
 ```
 
 ### Delete a player
@@ -322,7 +372,7 @@ Finally, to delete a player, you can send a `DELETE` to `/players/:guid`:
 
 ```sh
 $ curl -X DELETE \
-    http://localhost:3001/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f
+    "http://localhost:3001/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f"
 ```
 
 ## Running both servers simultaneously
