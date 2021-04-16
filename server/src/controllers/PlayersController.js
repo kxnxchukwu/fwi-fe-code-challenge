@@ -1,5 +1,5 @@
 const fs = require('fs');
-const uuid = require('uuid/v4');
+const uuid = require('uuid').v4;
 const Joi = require('joi');
 const {
   COUNTRIES,
@@ -14,7 +14,9 @@ class PlayersController {
     this.playerSchema = Joi.object().keys({
       id: Joi.string().guid().required(),
       name: Joi.string().required(),
-      country: Joi.string().valid(COUNTRIES).required(),
+      country: Joi.string()
+        .valid(...COUNTRIES)
+        .required(),
       winnings: Joi.number().required(),
       imageUrl: Joi.string().uri().optional().allow(null).default(null),
     });
