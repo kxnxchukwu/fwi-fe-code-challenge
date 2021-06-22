@@ -32,7 +32,7 @@ class PlayersController {
   }
 
   validate(data) {
-    const result = Joi.validate(data, this.playerSchema, {
+    const result = this.playerSchema.validate(data, {
       abortEarly: false,
       allowUnknown: false,
     });
