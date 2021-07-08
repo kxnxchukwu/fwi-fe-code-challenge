@@ -66,6 +66,8 @@ start the code challenge.
 
 ### Quick Setup
 
+#### Without Docker
+
 After you have cloned the repo, you will need to ensure that [yarn] has been
 installed since this project uses yarn for dependency management and the
 workspaces feature. Once `yarn` has been installed, you can get up and running
@@ -82,6 +84,22 @@ for you.
 
 The `client` app will be using [create-react-app], so anything that is supported
 by create-react-app can be used.
+
+#### With Docker
+
+If you have docker installed, you can skip the steps above and just run:
+
+```sh
+yarn start-docker
+```
+
+This will create two containers:
+
+- client - everything in the `./client` folder
+- server - everything in the `./server` folder
+
+If you make a change in the `./client/src` folder, those changes will be
+reflected and rebuild automatically.
 
 ### Installing dependencies
 
@@ -112,6 +130,10 @@ $ yarn add redux-devtools-extension
 
 So packages should still be installed in the `client/package.json` instead of
 the root `package.json`.
+
+> Note: If you are using Docker, you might need to shutdown the containers, run
+> `docker-compose build`, and then run `yarn start-docker` after installing new
+> dependencies.
 
 ### Submitting the code
 

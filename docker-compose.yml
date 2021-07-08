@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build: ./client
+    volumes:
+      - ./client/src:/code/client/src
+    ports:
+      - 3000:3000
+  api:
+    build: ./server
+    volumes:
+      - ./server/src:/code/server/src
+    ports:
+      - 3001:3001
