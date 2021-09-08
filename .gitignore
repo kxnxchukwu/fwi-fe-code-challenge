@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# "Database"
+src/assets/data.json
