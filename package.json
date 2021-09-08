@@ -1,37 +1,29 @@
 {
   "name": "fwi-fe-code-challenge",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
-  "description": "This is the code challenge for applying to FWI's FE Developer Position.",
   "scripts": {
-    "start-server": "yarn workspace server start",
-    "start-client": "yarn workspace client start",
-    "start": "npm-run-all -p start-server start-client",
-    "start-docker": "docker-compose up"
+    "prepare": "husky install",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "husky": "^4.2.5",
-    "lint-staged": "^11.0.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1"
-  },
-  "engines": {
-    "node": ">=8.10.0"
-  },
-  "workspaces": [
-    "client/",
-    "server/"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "sass": "^1.39.0"
   },
   "lint-staged": {
-    "**/*.md": [
-      "prettier --write"
-    ],
-    "{client,server}/src/**/*.{js,jsx,ts,tsx,scss}": [
+    "**/*.{ts,tsx,js,jsx,css,scss,md,json}": [
       "prettier --write"
     ]
   }
