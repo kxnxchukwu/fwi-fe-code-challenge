@@ -1,0 +1,24 @@
+@use '../variables';
+
+$avatar-size: 2.5rem;
+$avatar-small-size: 2rem;
+
+.avatar {
+  border: 1px solid variables.$fog;
+  border-radius: 50%;
+  display: inline-flex;
+  height: $avatar-size;
+  overflow: hidden;
+  width: $avatar-size;
+
+  // don't use a className so that react-world-flags also updates
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.small {
+  height: $avatar-small-size;
+  width: $avatar-small-size;
+}

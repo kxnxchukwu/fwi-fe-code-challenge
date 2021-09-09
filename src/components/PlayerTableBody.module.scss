@@ -1,0 +1,37 @@
+@use '../variables';
+
+.tbody {
+  background-color: variables.$snow;
+}
+
+.row {
+  background-color: variables.$snow;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: variables.$pearl;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid variables.$pearl;
+  }
+}
+
+.avatar {
+  text-align: center;
+}
+
+.winnings {
+  padding-right: 1.5rem;
+  text-align: right;
+}
+
+.country {
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.countryAvatar {
+  margin-right: 0.5rem;
+}

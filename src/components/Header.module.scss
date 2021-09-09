@@ -1,0 +1,41 @@
+@use '../variables';
+
+.header {
+  align-items: center;
+  background-color: variables.$charcoal;
+  box-shadow: 0 4px 5px 0 rgba(variables.$sleeping-panther, 0.14),
+    0 1px 10px 0 rgba(variables.$sleeping-panther, 0.12),
+    0 2px 4px -1px rgba(variables.$sleeping-panther, 0.4);
+  display: flex;
+  height: 3.5rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.logo {
+  height: 3.125rem;
+  margin-left: 1rem;
+  position: relative;
+  width: 3.125rem;
+}
+
+.cloudColors {
+  fill: variables.$vivid;
+}
+
+.cloudColors,
+.cloudEffects {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.title {
+  color: variables.$snow;
+  font-size: 1.25rem;
+  letter-spacing: 0.0125em;
+  line-height: 2rem;
+  font-weight: 500;
+  margin: 0 1rem;
+}
