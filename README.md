@@ -4,23 +4,23 @@ This is the code challenge for applying to FWI's FE Developer Position.
 
 ## Table of Contents
 
-- [Getting Started and Challenge Information](#getting-started-and-challenge-information)
-  - [Cloning and developing](#cloning-and-developing)
-  - [Quick Setup](#quick-setup)
-  - [Installing Dependencies](#installing-dependencies)
-  - [Submitting the code](#submitting-the-code)
-  - [Challenge Checklist](#challenge-checklist)
+<!-- toc -->
+
+- [Cloning and developing](#cloning-and-developing)
+  - [Getting Started](#getting-started)
+  - [Available Commands](#available-commands)
+- [Submitting the code](#submitting-the-code)
+- [Challenge Checklist](#challenge-checklist)
 - [API Documentation](#api-documentation)
-  - [Get All Players](#get-all-players)
+  - [Get all players](#get-all-players)
     - [Get All Players (Paginated)](#get-all-players-paginated)
     - [Get All Players (Sorted)](#get-all-players-sorted)
-  - [Get a Player](#get-a-player)
-  - [Create a Player](#create-a-player)
-  - [Update a Player](#update-a-player)
-  - [Delete a Player](#delete-a-player)
-- [Running both servers simultaneously](#running-both-servers-simultaneously)
-- [Client Application](#client)
-- [Server Application](#server)
+  - [Get a player](#get-a-player)
+  - [Create a player](#create-a-player)
+  - [Update a player](#update-a-player)
+  - [Delete a player](#delete-a-player)
+
+<!-- tocstop -->
 
 ## Getting Started and Challenge Information
 
@@ -31,9 +31,8 @@ This challenge will test your ability to:
 - consume/create data from a RESTful API
 
 To make things easier from the get-go, we have provided both a backend RESTful
-API as well as a starter front end app using
-[create-react-app](https://facebook.github.io/create-react-app/) and some
-default "reasonable" styles.
+API as well as a starter front end app using [nextjs](https://nextjs.org/) and
+some default "reasonable" styles.
 
 This app will start with the ability to view every poker player in the database
 and list them within a table. Your job will be to update this app so that
@@ -41,7 +40,7 @@ players can be added, modified, or deleted using the RESTful API backend we have
 provided. The app started with very simplistic styles, so feel free to import
 and use any of your favorite libraries or expand upon the current styles to your
 liking. If possible, ensure that the FWI branding colors are still used which
-can be found in [client/src/\_variables.scss](client/src/_variables.scss).
+can be found in [src/\_variables.scss](src/_variables.scss).
 
 ### Cloning and developing
 
@@ -55,8 +54,8 @@ $ cd fwi-fe-code-challenge
 $ git init
 $ git remote add origin https://github.com/USERNAME/fwi-fe-code-challenge
 $ git remote add remote-origin https://github.com/fourwindsinteractive/fwi-fe-code-challenge
-$ git pull remote-origin master
-$ git push origin master
+$ git pull remote-origin main
+$ git push origin main
 ```
 
 The steps above will create an empty git repo, set the origin to your GitHub
@@ -64,76 +63,28 @@ code challenge location, then pull the latest code challenge into your repo, and
 push it to your GitHub. Once you have done all of this, you should be set to
 start the code challenge.
 
-### Quick Setup
+The code challenge can be completed in either Javascript or Typescript so you
+can choose whichever language you prefer.
 
-#### Without Docker
+> There are few type definitions available in the
+> [src/appTypes](./src/appTypes/) folder.
 
-After you have cloned the repo, you will need to ensure that [yarn] has been
-installed since this project uses yarn for dependency management and the
-workspaces feature. Once `yarn` has been installed, you can get up and running
-with:
-
-```sh
-$ yarn
-$ yarn start
-```
-
-The above commands will install all the dependencies in both the `client` and
-`server` folders as well as start up both the client server and the API server
-for you.
-
-The `client` app will be using [create-react-app], so anything that is supported
-by create-react-app can be used.
-
-#### With Docker
-
-If you have docker installed, you can skip the steps above and just run:
+#### Getting Started
 
 ```sh
-yarn start-docker
+yarn
+yarn dev
 ```
 
-This will create two containers:
+This will install all the dependencies and start the dev server at
+http://localhost:3000.
 
-- client - everything in the `./client` folder
-- server - everything in the `./server` folder
+#### Available Commands
 
-If you make a change in the `./client/src` folder, those changes will be
-reflected and rebuild automatically.
-
-### Installing dependencies
-
-This project is using [yarn workspaces] to manage dependencies in both the
-`client` and `server` folders so that the `node_modules` folder can be a bit
-smaller and a simple way to install dependencies in both directories. Instead of
-having to `cd` into both the `client` and `server` folders to install
-dependencies, you can now just run `yarn` in the root folder which will
-automatically install all required dependencies.
-
-If you would like to install a new dependency for this code challenge, you can
-either `cd` into the `client` folder and run `yarn add PACKAGE_NAME` like normal
-or use the `yarn workspace` prefix. Check out the example below for more
-information and an example of adding the [redux-devtools-extension] to the
-`client` app.
-
-```sh
-username @ ~/fwi-fe-code-challenge
-$ yarn workspace client add redux-devtools-extension
-```
-
-Or directly within the `client` folder:
-
-```sh
-username @ ~/fwi-fe-code-challenge/client
-$ yarn add redux-devtools-extension
-```
-
-So packages should still be installed in the `client/package.json` instead of
-the root `package.json`.
-
-> Note: If you are using Docker, you might need to shutdown the containers, run
-> `docker-compose build`, and then run `yarn start-docker` after installing new
-> dependencies.
+- `yarn dev` - Run the [nextjs](https://nextjs.org) dev server and API routes
+- `yarn lint` - Run [eslint](https://eslint.org)
+- `yarn build` - Create a production build
+- `yarn start` - Run the production server
 
 ### Submitting the code
 
@@ -162,22 +113,8 @@ added any additional steps.
 
 ## API Documentation
 
-The player entity will have the following structure:
-
-```ts
-import { COUNTRIES } from './constants';
-
-type Guid = string;
-type CountryCode = keyof COUNTRIES;
-
-interface Player {
-  id: Guid;
-  name: string;
-  country: CountryCode;
-  winnings: number;
-  imageUrl: string;
-}
-```
+Check out the [Player typescript interface](./src/appTypes/players.ts) to see
+what a poker player looks like.
 
 ### Get all players
 
@@ -185,7 +122,7 @@ You can get a list of all the players be sending a `GET` request to `/players`:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3001/players"
+    "http://localhost:3000/players"
 ```
 
 Response:
@@ -219,7 +156,7 @@ parameters:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3001/players?size=24"
+    "http://localhost:3000/players?size=24"
 ```
 
 Response:
@@ -253,7 +190,7 @@ So if you would like to get the next set of results, you can do:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3001/players?size=24&from=24"
+    "http://localhost:3000/players?size=24&from=24"
 ```
 
 Response:
@@ -290,7 +227,7 @@ parameters:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3001/players?sortBy=name&sortOrder=desc"
+    "http://localhost:3000/players?sortBy=name&sortOrder=desc"
 ```
 
 Response:
@@ -320,9 +257,8 @@ Response:
 }
 ```
 
-Check out the
-[createSortingFunction](./server/src/controllers/PlayersController.js#L42) to
-see how the data is sorted and valid `sortBy`/`sortOrder` values.
+Check out the [sort function](./src/server/controllers.ts#L53) to see how the
+data is sorted and valid `sortBy`/`sortOrder` values.
 
 ### Get a player
 
@@ -330,7 +266,7 @@ You can get a single player by sending a `GET` request to `/players/:guid`:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3001/players/70629df2-571a-4899-b36a-8f36c909508a"
+    "http://localhost:3000/players/70629df2-571a-4899-b36a-8f36c909508a"
 ```
 
 Response:
@@ -366,14 +302,14 @@ created player:
 ```sh
 $ curl -d '{ "name": "New Person", "country": "US", "winnings": 1000 }' \
   -H "Content-Type: application/json" \
-  -X POST "http://localhost:3001/players"
+  -X POST "http://localhost:3000/players"
 ```
 
 Response:
 
 ```sh
 201 Created
-Location: http://localhost:3001/players/0ef94f22-e727-4888-91e3-088be5dbd896
+Location: http://localhost:3000/players/0ef94f22-e727-4888-91e3-088be5dbd896
 ```
 
 ### Update a player
@@ -385,7 +321,7 @@ data:
 $ curl -d '{ "name": "Example Name" }' \
     -H "Content-Type: application/json" \
     -X PATCH \
-    "http://localhost:3001/players/314c5ab7-ba9b-4821-adba-b4f9d92009db"
+    "http://localhost:3000/players/314c5ab7-ba9b-4821-adba-b4f9d92009db"
 ```
 
 ### Delete a player
@@ -394,44 +330,5 @@ Finally, to delete a player, you can send a `DELETE` to `/players/:guid`:
 
 ```sh
 $ curl -X DELETE \
-    "http://localhost:3001/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f"
+    "http://localhost:3000/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f"
 ```
-
-## Running both servers simultaneously
-
-If you'd like to run the `client` and `server` apps in one command, you can
-change into the root directory and just run:
-
-```sh
-$ yarn
-$ yarn start
-```
-
-This will install dependencies in both folders as well as spin up both servers
-using `npm-run-all`
-
-## client
-
-```sh
-$ cd client
-$ yarn
-$ yarn start
-```
-
-The app will be started and available at http://localhost:3000
-
-## server
-
-```sh
-$ cd server
-$ yarn
-$ yarn start
-```
-
-The API server will be started and available at http://localhost:3001
-
-[yarn]: https://yarnpkg.com
-[create-react-app]: https://github.com/facebook/create-react-app
-[yarn workspaces]: https://yarnpkg.com/lang/en/docs/workspaces/
-[redux-devtools-extension]:
-  https://github.com/zalmoxisus/redux-devtools-extension
