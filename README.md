@@ -72,17 +72,25 @@ can choose whichever language you prefer.
 #### Getting Started
 
 ```sh
-yarn
+yarn --ignore-optional
 yarn dev
 ```
 
 This will install all the dependencies and start the dev server at
 http://localhost:3000.
 
+> The `--ignore-optional` flag is added to skip installing
+> [cypress](https://www.cypress.io/) since it's a large download and isn't
+> required to complete the code challenge.
+
 #### Available Commands
 
 - `yarn dev` - Run the [nextjs](https://nextjs.org) dev server and API routes
 - `yarn lint` - Run [eslint](https://eslint.org)
+- `yarn test` - Run tests with [jest](https://jestjs.io)
+- `yarn test-cy` - Opens the [cyress](https://cypress.io) test runner
+- `yarn test-cy-ci` - Run tests with [cyress](https://cypress.io) from the
+  command line
 - `yarn build` - Create a production build
 - `yarn start` - Run the production server
 
