@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "test-cy": "yarn cypress open",
+    "test-cy-ci": "yarn cypress run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
@@ -43,6 +45,10 @@
     "sass": "^1.39.0",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
+  },
+  "optionalDependencies": {
+    "@testing-library/cypress": "^8.0.1",
+    "cypress": "^8.4.0"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,jsx,css,scss,md,json}": [

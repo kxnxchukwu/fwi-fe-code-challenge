@@ -27,7 +27,9 @@ const handler = createApiHandler(async (req, res) => {
       return res.status(200).json(player);
     }
     case 'DELETE':
-      return controller.delete(playerId);
+      await controller.delete(playerId);
+      res.status(204).end();
+      break;
     default:
       throw new BadRequestError();
   }

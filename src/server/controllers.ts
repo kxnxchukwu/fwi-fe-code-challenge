@@ -34,7 +34,7 @@ const PLAYER_PATCH_SCHEMA = Joi.object<Partial<BasePlayer>>({
 
 const PAGINATION_SCHEMA = Joi.object<PaginationOptions>({
   sortBy: Joi.string()
-    .valid('name', 'country', 'winnings', '')
+    .valid('name', 'country', 'winnings')
     .optional()
     .default(''),
   sortOrder: Joi.string().valid('asc', 'desc').optional().default('asc'),

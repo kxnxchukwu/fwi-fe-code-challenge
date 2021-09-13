@@ -12,6 +12,7 @@ const handler = createApiHandler(async (req, res) => {
     }
     case 'POST': {
       const player = await controller.create(req.body);
+      res.setHeader('Location', `${req.url}/${player.id}`);
       return res.status(201).json(player);
     }
     default:
