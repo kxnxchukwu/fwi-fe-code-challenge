@@ -250,6 +250,111 @@ describe('players API', () => {
     });
   });
 
+  context('modifying players', () => {
+    it('should be able to modify a player with a PATCH request', () => {
+      const [player1] = DEFAULT_PLAYERS;
+
+      const changed1 = {
+        name: 'Changed Name',
+      };
+
+      cy.request({
+        url: `${PLAYERS_ENDPOINT}/${player1.id}`,
+        method: 'PATCH',
+        body: changed1,
+      }).then((response) => {
+        expect(response.status).to.equal(200);
+        expect(response.body).to.deep.equal({
+          ...player1,
+          ...changed1,
+        });
+      });
+
+      cy.request(`${PLAYERS_ENDPOINT}/${player1.id}`)
+        .its('body')
+        .should('deep.equal', {
+          ...player1,
+          ...changed1,
+        });
+
+      const changed2 = {
+        winnings: 30000,
+      };
+      cy.request({
+        url: `${PLAYERS_ENDPOINT}/${player1.id}`,
+        method: 'PATCH',
+        body: changed2,
+      }).then((response) => {
+        expect(response.status).to.equal(200);
+        expect(response.body).to.deep.equal({
+          ...player1,
+          ...changed1,
+          ...changed2,
+        });
+      });
+
+      cy.request(`${PLAYERS_ENDPOINT}/${player1.id}`)
+        .its('body')
+        .should('deep.equal', {
+          ...player1,
+          ...changed1,
+          ...changed2,
+        });
+    });
+
+    it('should return a 400 for invalid data', () => {
+      const [player1] = DEFAULT_PLAYERS;
+      const url = `${PLAYERS_ENDPOINT}/${player1.id}`;
+
+      cy.request({
+        url,
+        method: 'PATCH',
+        body: { id: 'noooo' },
+        failOnStatusCode: false,
+      }).then((response) => {
+        expect(response.status).to.equal(400);
+        expect(response.body).to.have.property('reason', '"id" is not allowed');
+      });
+
+      cy.request({
+        url,
+        method: 'PATCH',
+        body: { name: 100 },
+        failOnStatusCode: false,
+      }).then((response) => {
+        expect(response.status).to.equal(400);
+        expect(response.body).to.have.property(
+          'reason',
+          '"name" must be a string'
+        );
+      });
+
+      cy.request({
+        url,
+        method: 'PATCH',
+        body: { imageUrl: 'noooo' },
+        failOnStatusCode: false,
+      }).then((response) => {
+        expect(response.status).to.equal(400);
+        expect(response.body).to.have.property(
+          'reason',
+          '"imageUrl" must be a valid uri'
+        );
+      });
+    });
+
+    it('should return a 404 for a non-existing player', () => {
+      cy.request({
+        url: `${PLAYERS_ENDPOINT}/unknown-id`,
+        method: 'PATCH',
+        body: { name: 'New Name' },
+        failOnStatusCode: false,
+      })
+        .its('status')
+        .should('equal', 404);
+    });
+  });
+
   context('deleting players', () => {
     it('should be able to delete a player by id', () => {
       const [player1] = DEFAULT_PLAYERS;
