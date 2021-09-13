@@ -137,7 +137,7 @@ Response:
 
 ```json
 {
-  "players": [
+  "items": [
     {
       "id": "314c5ab7-ba9b-4821-adba-b4f9d92009db",
       "name": "Freddy Kruger",
@@ -174,7 +174,7 @@ Response:
   "from": 0,
   "size": 24,
   "total": 1000,
-  "players": [
+  "items": [
     {
       "id": "314c5ab7-ba9b-4821-adba-b4f9d92009db",
       "name": "Freddy Kruger",
@@ -208,7 +208,7 @@ Response:
   "from": 24,
   "size": 24,
   "total": 1000,
-  "players": [
+  "items": [
     {
       "id": "0ef94f22-e727-4888-91e3-088be5dbd896",
       "name": "Scott Sterling",
@@ -245,7 +245,7 @@ Response:
   "from": 0,
   "size": 24,
   "total": 1000,
-  "players": [
+  "items": [
     {
       "id": "314c5ab7-ba9b-4821-adba-b4f9d92009db",
       "name": "Freddy Kruger",
