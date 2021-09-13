@@ -3,7 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import players from './players';
 
-function createStore(preloadedState) {
+export function createStore(preloadedState) {
   return configureStore({
     preloadedState,
     reducer: combineReducers({

@@ -28,9 +28,11 @@ export const fetchAllPlayers = createAsyncThunk(
   }
 );
 
+export const PLAYERS_INITIAL_STATE = adapter.getInitialState();
+
 const { actions, reducer } = createSlice({
   name: 'players',
-  initialState: adapter.getInitialState(),
+  initialState: PLAYERS_INITIAL_STATE,
   extraReducers: (builder) =>
     builder.addCase(fetchAllPlayers.fulfilled, (state, action) => {
       adapter.setAll(state, action.payload.items);
