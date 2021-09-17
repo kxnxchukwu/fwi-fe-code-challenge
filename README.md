@@ -81,7 +81,9 @@ http://localhost:3000.
 
 > The `--ignore-optional` flag is added to skip installing
 > [cypress](https://www.cypress.io/) since it's a large download and isn't
-> required to complete the code challenge.
+> required to complete the code challenge. If you want to use cypress after
+> completing the rest of the code challenge, you will need to run `yarn --force`
+> or `rm -rf node_modules && yarn`.
 
 #### Available Commands
 
