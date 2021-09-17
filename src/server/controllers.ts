@@ -32,7 +32,7 @@ const PLAYER_PATCH_SCHEMA = Joi.object<Partial<BasePlayer>>({
   imageUrl: Joi.string().uri().optional(),
 });
 
-const PAGINATION_SCHEMA = Joi.object<PaginationOptions>({
+const PAGINATION_SCHEMA = Joi.object<Required<PaginationOptions>>({
   sortBy: Joi.string()
     .valid('name', 'country', 'winnings')
     .optional()
@@ -52,7 +52,7 @@ export class PlayersController {
 
   private sort(
     players: readonly Player[],
-    sortBy: string,
+    sortBy: keyof Player | '',
     sortOrder: 'asc' | 'desc'
   ): readonly Player[] {
     if (!sortBy) {
