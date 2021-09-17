@@ -194,8 +194,49 @@ describe('players API', () => {
         expect(response.body).to.have.property('country', 'US');
         expect(response.body).to.have.property('winnings', 1000);
         expect(response.body).to.have.property('id');
-        expect(response.body).to.have.property('imageUrl');
         ({ id } = response.body);
+
+        expect(response.body).to.have.property(
+          'imageUrl',
+          `https://i.pravatar.cc/40?u=${id}`
+        );
+
+        expect(response.headers).to.have.property(
+          'location',
+          `/api/players/${id}`
+        );
+      });
+
+      cy.request(`${PLAYERS_ENDPOINT}/${id}`)
+        .its('status')
+        .should('be.equal', 200);
+    });
+
+    it('should allow the imageUrl to be an empty string', () => {
+      const newPlayer = {
+        name: 'New Player',
+        country: 'US',
+        winnings: 1000,
+        imageUrl: '',
+      };
+
+      let id = '';
+      cy.request({
+        url: PLAYERS_ENDPOINT,
+        method: 'POST',
+        body: newPlayer,
+      }).then((response) => {
+        expect(response.status).to.eq(201);
+        expect(response.body).to.have.property('name', 'New Player');
+        expect(response.body).to.have.property('country', 'US');
+        expect(response.body).to.have.property('winnings', 1000);
+        expect(response.body).to.have.property('id');
+        ({ id } = response.body);
+
+        expect(response.body).to.have.property(
+          'imageUrl',
+          `https://i.pravatar.cc/40?u=${id}`
+        );
 
         expect(response.headers).to.have.property(
           'location',
@@ -332,6 +373,19 @@ describe('players API', () => {
       cy.request({
         url,
         method: 'PATCH',
+        body: { name: '' },
+        failOnStatusCode: false,
+      }).then((response) => {
+        expect(response.status).to.equal(400);
+        expect(response.body).to.have.property(
+          'reason',
+          '"name" is not allowed to be empty'
+        );
+      });
+
+      cy.request({
+        url,
+        method: 'PATCH',
         body: { imageUrl: 'noooo' },
         failOnStatusCode: false,
       }).then((response) => {
@@ -339,6 +393,19 @@ describe('players API', () => {
         expect(response.body).to.have.property(
           'reason',
           '"imageUrl" must be a valid uri'
+        );
+      });
+
+      cy.request({
+        url,
+        method: 'PATCH',
+        body: { imageUrl: '' },
+        failOnStatusCode: false,
+      }).then((response) => {
+        expect(response.status).to.equal(400);
+        expect(response.body).to.have.property(
+          'reason',
+          '"imageUrl" is not allowed to be empty'
         );
       });
     });

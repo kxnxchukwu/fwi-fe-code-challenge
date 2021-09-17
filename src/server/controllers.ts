@@ -20,7 +20,7 @@ const NEW_PLAYER_SCHEMA = Joi.object<BasePlayer>({
     .valid(...Object.keys(COUNTRIES))
     .required(),
   winnings: Joi.number().required(),
-  imageUrl: Joi.string().uri().optional(),
+  imageUrl: Joi.string().allow('').uri().optional(),
 });
 
 const PLAYER_PATCH_SCHEMA = Joi.object<Partial<BasePlayer>>({
@@ -139,7 +139,7 @@ export class PlayersController {
     const player: Player = {
       ...newPlayer,
       id,
-      imageUrl: newPlayer.imageUrl ?? `http://i.pravatar.cc/40?u=${id}`,
+      imageUrl: newPlayer.imageUrl || `https://i.pravatar.cc/40?u=${id}`,
     };
 
     this.setPlayers({ ...this.getPlayers(), [id]: player });
