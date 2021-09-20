@@ -128,11 +128,12 @@ what a poker player looks like.
 
 ### Get all players
 
-You can get a list of all the players be sending a `GET` request to `/players`:
+You can get a list of all the players be sending a `GET` request to
+`/api/players`:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3000/players"
+    "http://localhost:3000/api/players"
 ```
 
 Response:
@@ -166,7 +167,7 @@ parameters:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3000/players?size=24"
+    "http://localhost:3000/api/players?size=24"
 ```
 
 Response:
@@ -200,7 +201,7 @@ So if you would like to get the next set of results, you can do:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3000/players?size=24&from=24"
+    "http://localhost:3000/api/players?size=24&from=24"
 ```
 
 Response:
@@ -237,7 +238,7 @@ parameters:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3000/players?sortBy=name&sortOrder=desc"
+    "http://localhost:3000/api/players?sortBy=name&sortOrder=desc"
 ```
 
 Response:
@@ -272,11 +273,11 @@ data is sorted and valid `sortBy`/`sortOrder` values.
 
 ### Get a player
 
-You can get a single player by sending a `GET` request to `/players/:guid`:
+You can get a single player by sending a `GET` request to `/api/players/:guid`:
 
 ```sh
 $ curl -H "Accept: application/json" \
-    "http://localhost:3000/players/70629df2-571a-4899-b36a-8f36c909508a"
+    "http://localhost:3000/api/players/70629df2-571a-4899-b36a-8f36c909508a"
 ```
 
 Response:
@@ -293,7 +294,8 @@ Response:
 
 ### Create a player
 
-To create a player, you can send a `POST` to `/players` with the following data:
+To create a player, you can send a `POST` to `/api/players` with the following
+data:
 
 ```ts
 interface Player {
@@ -312,33 +314,33 @@ created player:
 ```sh
 $ curl -d '{ "name": "New Person", "country": "US", "winnings": 1000 }' \
   -H "Content-Type: application/json" \
-  -X POST "http://localhost:3000/players"
+  -X POST "http://localhost:3000/api/players"
 ```
 
 Response:
 
 ```sh
 201 Created
-Location: http://localhost:3000/players/0ef94f22-e727-4888-91e3-088be5dbd896
+Location: http://localhost:3000/api/players/0ef94f22-e727-4888-91e3-088be5dbd896
 ```
 
 ### Update a player
 
-To update a player, you can send a `PATCH` to `/players/:guid` with the updated
-data:
+To update a player, you can send a `PATCH` to `/api/players/:guid` with the
+updated data:
 
 ```sh
 $ curl -d '{ "name": "Example Name" }' \
     -H "Content-Type: application/json" \
     -X PATCH \
-    "http://localhost:3000/players/314c5ab7-ba9b-4821-adba-b4f9d92009db"
+    "http://localhost:3000/api/players/314c5ab7-ba9b-4821-adba-b4f9d92009db"
 ```
 
 ### Delete a player
 
-Finally, to delete a player, you can send a `DELETE` to `/players/:guid`:
+Finally, to delete a player, you can send a `DELETE` to `/api/players/:guid`:
 
 ```sh
 $ curl -X DELETE \
-    "http://localhost:3000/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f"
+    "http://localhost:3000/api/players/4f3b5ce4-2072-47d4-beb8-d46a9a0a8c9f"
 ```
