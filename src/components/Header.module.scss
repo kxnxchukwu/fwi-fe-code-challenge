@@ -11,6 +11,7 @@
   position: sticky;
   top: 0;
   width: 100%;
+  justify-content: space-between;
 }
 
 .logo {
@@ -38,4 +39,21 @@
   line-height: 2rem;
   font-weight: 500;
   margin: 0 1rem;
+}
+
+.logoAndTitle {
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.createPlayerLink {
+  margin-left: 18%;
+  margin-right: 15px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
 }

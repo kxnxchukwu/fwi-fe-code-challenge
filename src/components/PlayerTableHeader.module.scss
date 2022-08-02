@@ -16,6 +16,7 @@ $header-height: 2.5rem;
   vertical-align: middle;
   will-change: tranform;
   z-index: 1;
+  cursor: pointer;
 
   &::after {
     border: inherit;
