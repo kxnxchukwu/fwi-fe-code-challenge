@@ -13,7 +13,7 @@
     "test-cy-ci": "yarn cypress run"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.6.1",
+    "@reduxjs/toolkit": "^1.9.2",
     "bootstrap": "^5.2.0",
     "classnames": "^2.3.1",
     "joi": "^17.4.2",
